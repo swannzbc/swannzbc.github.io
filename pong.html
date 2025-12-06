@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Jeu de Pong</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.png">
+    <form>
+    <input class="styled" type="button" onclick="window.location.href = 'index.html';" value="Accueil" />
+    </form>
+    <link href="bouton1.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Pong</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        canvas {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="pong" width="800" height="400"></canvas>
+
+<script src="pong.js"></script>
+</body>
+</html>

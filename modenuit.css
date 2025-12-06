@@ -1,0 +1,18 @@
+body {
+  background: #ffffff;
+  color: #000000;
+  transition: 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+body.dark {
+  background: #000000;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(153, 153, 153, 1) 100%);
+  color: #f0f0f0;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  range: "lune.png";
+}

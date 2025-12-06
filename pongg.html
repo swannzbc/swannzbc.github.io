@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link href="bouton1.css" rel="stylesheet">
+		<form>
+            <input class="styled" type="button" onclick="window.location.href = 'index.html';" value="Accueil" />
+        </form>
+<meta charset="UTF-8">
+<title>Pong</title>
+
+<style>
+    body {
+        background:#111;
+        color:white;
+        font-family:Arial;
+        text-align:center;
+        margin-top:20px;
+    }
+    canvas{
+        background:black;
+        display:block;
+        margin:auto;
+        border:2px solid white;
+    }
+    #scoreboard{
+        margin:15px;
+        font-size:22px;
+    }
+</style>
+
+</head>
+<body>
+
+<h2>Jeu de Pong</h2>
+<div id="scoreboard">Joueur 0 - IA 0</div>
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+
+<script>
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let playerY = canvas.height/2 - 50;
+let botY = canvas.height/2 - 50;
+
+let ballX = canvas.width/2;
+let ballY = canvas.height/2;
+let ballSpeedX = 5;
+let ballSpeedY = 3;
+
+let playerScore = 0;
+let botScore = 0;
+
+function drawPaddle(x,y){
+    ctx.fillStyle="white";
+    ctx.fillRect(x,y,10,100);
+}
+
+function drawBall(){
+    ctx.beginPath();
+    ctx.arc(ballX,ballY,10,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+}
+
+function updateBall(){
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    if(ballY<10 || ballY>canvas.height-10) ballSpeedY*= -1;
+
+    if(ballX<20 && ballY>playerY && ballY<playerY+100){
+        ballSpeedX *= -1;
+    }
+
+    if(ballX>canvas.width-20 && ballY>botY && ballY<botY+100){
+        ballSpeedX *= -1;
+    }
+
+    if(ballX<0){
+        botScore++;
+        resetBall();
+    }
+
+    if(ballX>canvas.width){
+        playerScore++;
+        resetBall();
+    }
+
+    updateScoreboard();
+}
+
+function updateScoreboard(){
+    document.getElementById("scoreboard").innerText =
+        "Joueur " + playerScore + " - IA " + botScore;
+}
+
+function resetBall(){
+    ballX = canvas.width/2;
+    ballY = canvas.height/2;
+    ballSpeedX *= -1;
+}
+
+function aiMove(){
+    if(botY + 50 < ballY) botY += 3;
+    else botY -= 3;
+}
+
+function game(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    drawPaddle(10,playerY);
+    drawPaddle(canvas.width-20,botY);
+    drawBall();
+
+    updateBall();
+    aiMove();
+
+    requestAnimationFrame(game);
+}
+
+canvas.addEventListener("mousemove", e=>{
+    const rect = canvas.getBoundingClientRect();
+    playerY = e.clientY - rect.top - 50;
+})
+
+game();
+</script>
+
+</body>
+</html>
