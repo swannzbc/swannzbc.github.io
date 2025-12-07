@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+        <style>
+            body {
+                transition: background 0.3s, color 0.3s;
+                background: #ffffff;
+                color: #000000;
+                font-family: sans-serif;
+            }
+
+            body.nuit {
+                background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(153, 153, 153, 1) 100%);
+                color: #ffffff;
+            }
+
+            .switch {
+                position: relative;
+                width: 60px;
+                height: 30px;
+                display: inline-block;
+            }
+
+            .switch input {
+                display: none;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                inset: 0;
+                background-color: #ccc;
+                border-radius: 30px;
+                transition: 0.3s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 24px;
+                width: 24px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+
+            input:checked + .slider {
+                background-color: #808080;
+            }
+
+            input:checked + .slider:before {
+                transform: translateX(30px);
+            }
+        </style>
+        <head>
+        <link rel="icon" href="favicon.ico">
+        <link rel="icon" type="image/svg+xml" href="favicon.png">
+        <title>Roblox</title>
+        <link href="bouton1.css" rel="stylesheet">
+        <form>
+            <input class="styled" type="button" onclick="window.location.href = 'index.html';" value="Accueil" />
+        </form>
+        <form>
+            <input class="styled" type="button" onclick="window.location.href = 'jeuxvideo.html';" value="Jeux Vidéo" />
+        </form>
+        <link rel="stylesheet" href="modenuit.css">
+        <label class="switch">
+            <input type="checkbox" id="switchMode">
+            <span class="slider"></span>
+        </label>
+        <link href="background.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <script>
+  			const switchBtn = document.getElementById("switchMode");
+  			const img = document.getElementById("imageChange");
+
+  			switchBtn.addEventListener("change", () => {
+    		document.body.classList.toggle("nuit");
+ 			});
+		</script>
+            <h1>Roblox</h1>
+        <body>
+            Roblox est une plateforme de jeux en ligne où les joueurs peuvent créer, partager et jouer à des milliers de jeux conçus par d’autres utilisateurs. Chaque expérience est différente et permet de personnaliser son avatar, explorer des mondes variés et jouer avec des amis.
+        </body>
+</html>
